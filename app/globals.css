@@ -410,7 +410,7 @@ button {
 
 .site-grid {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   align-items: stretch;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -419,9 +419,9 @@ button {
   --site-accent: var(--primary);
   position: relative;
   display: flex;
-  height: 326px;
+  height: 304px;
   min-width: 0;
-  padding: 18px;
+  padding: 15px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
@@ -460,8 +460,8 @@ button {
 
 .card-index {
   position: absolute;
-  top: 16px;
-  right: 17px;
+  top: 14px;
+  right: 15px;
   color: rgba(209, 216, 248, 0.24);
   font-family: var(--font-mono);
   font-size: 10px;
@@ -493,12 +493,12 @@ button {
 .game-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 11px;
+  gap: 4px;
+  margin-top: 8px;
 }
 
 .game-tags span {
-  padding: 3px 7px;
+  padding: 2px 6px;
   border: 1px solid color-mix(in srgb, var(--site-accent), transparent 63%);
   border-radius: 999px;
   color: var(--site-accent);
@@ -507,21 +507,21 @@ button {
 }
 
 .site-description {
-  margin: 12px 0 0;
+  margin: 9px 0 0;
   color: #d6d9e8;
   font-size: 11px;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .info-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin: 12px 0 0;
+  margin: 9px 0 0;
 }
 
 .info-tags span {
-  padding: 3px 6px;
+  padding: 2px 6px;
   border: 1px solid var(--line);
   color: var(--muted);
   font-size: 9px;
@@ -531,7 +531,7 @@ button {
   display: grid;
   gap: 7px;
   margin-top: auto;
-  padding-top: 13px;
+  padding-top: 10px;
   grid-template-columns: 1fr;
 }
 
@@ -539,13 +539,18 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.card-actions-multi {
+  gap: 4px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .card-actions a {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: 0;
-  min-height: 38px;
-  padding: 0 12px;
+  min-height: 32px;
+  padding: 0 10px;
   border: 1px solid var(--line-strong);
   color: var(--foreground);
   font-size: 10px;
@@ -754,13 +759,13 @@ footer > a:last-child {
   }
 
   .site-card {
-    height: 342px;
-    padding: 17px;
+    height: 312px;
+    padding: 14px;
   }
 
   .card-index {
-    top: 18px;
-    right: 18px;
+    top: 13px;
+    right: 14px;
   }
 
   footer {

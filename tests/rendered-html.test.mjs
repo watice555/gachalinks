@@ -24,6 +24,11 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /Project Yatta/);
   assert.match(html, /https:\/\/gi\.yatta\.moe\/chs/);
   assert.match(html, /https:\/\/sr\.yatta\.moe\/cn/);
+  assert.match(html, /https:\/\/hsr\.nanoka\.cc\//);
+  assert.match(html, /https:\/\/gi\.nanoka\.cc\//);
+  assert.match(html, /https:\/\/zzz\.nanoka\.cc\//);
+  assert.match(html, /https:\/\/ww\.nanoka\.cc\//);
+  assert.match(html, /https:\/\/nte\.nanoka\.cc\//);
   assert.match(html, /抽卡统计来自用户主动提交/);
   assert.match(html, /https:\/\/light\.shenmedouyou\.top\//);
   assert.match(html, /https:\/\/alioth\.wiki\//);
@@ -37,6 +42,25 @@ test("exports the complete navigation directory", async () => {
   assert.doesNotMatch(html, /Meta统计/);
   assert.doesNotMatch(html, /site-monogram|site-note|数据说明/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/);
+
+  const expectedSiteOrder = [
+    "nanoka.cc",
+    "Lunaris",
+    "Alioth.wiki",
+    "Paimon.moe",
+    "The Genius Archive",
+    "梅信心",
+    "Project Amber / Yatta",
+    "MaaNTE 在线地图",
+    "流光忆庭",
+    "Gachabase",
+    "Honey Impact",
+    "HomoDGCat",
+  ];
+  const positions = expectedSiteOrder.map((name) => html.indexOf(`<h3>${name}</h3>`));
+
+  assert.ok(positions.every((position) => position >= 0));
+  assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
 });
 
 test("exports assets required by GitHub Pages and social previews", async () => {

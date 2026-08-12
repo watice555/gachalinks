@@ -76,10 +76,11 @@ type DirectorySite = {
   links: SiteLink[];
 };
 
-const sites: DirectorySite[] = [
+type DirectorySiteEntry = Omit<DirectorySite, "index">;
+
+const siteCatalog: DirectorySiteEntry[] = [
   {
     id: "nanoka",
-    index: "01",
     name: "nanoka.cc",
     eyebrow: "跨游戏资料库",
     description:
@@ -96,11 +97,16 @@ const sites: DirectorySite[] = [
       "任务成就",
       "版本数据",
     ],
-    links: [{ label: "访问站点", url: "https://nanoka.cc/" }],
+    links: [
+      { label: "原神", url: "https://gi.nanoka.cc/" },
+      { label: "星铁", url: "https://hsr.nanoka.cc/" },
+      { label: "绝区零", url: "https://zzz.nanoka.cc/" },
+      { label: "鸣潮", url: "https://ww.nanoka.cc/" },
+      { label: "异环", url: "https://nte.nanoka.cc/" },
+    ],
   },
   {
     id: "meropide",
-    index: "02",
     name: "梅信心",
     eyebrow: "机制研究站",
     description:
@@ -120,7 +126,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "yatta",
-    index: "03",
     name: "Project Amber / Yatta",
     eyebrow: "双游戏资料库",
     description:
@@ -152,7 +157,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "paimon",
-    index: "04",
     name: "Paimon.moe",
     eyebrow: "祈愿与养成工具",
     description:
@@ -171,7 +175,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "genius",
-    index: "05",
     name: "The Genius Archive",
     eyebrow: "高难通关档案",
     description:
@@ -183,7 +186,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "maante",
-    index: "06",
     name: "MaaNTE 在线地图",
     eyebrow: "世界探索工具",
     description:
@@ -195,7 +197,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "lunaris",
-    index: "07",
     name: "Lunaris",
     eyebrow: "版本前瞻资料库",
     description:
@@ -216,7 +217,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "light-cone",
-    index: "08",
     name: "流光忆庭",
     eyebrow: "自定义光锥生成器",
     description:
@@ -233,7 +233,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "alioth",
-    index: "09",
     name: "Alioth.wiki",
     eyebrow: "双游戏机制资料库",
     description:
@@ -256,7 +255,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "gachabase",
-    index: "10",
     name: "Gachabase",
     eyebrow: "多游戏版本资料库",
     description:
@@ -275,7 +273,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "honey-impact",
-    index: "11",
     name: "Honey Impact",
     eyebrow: "原神综合资料库",
     description:
@@ -301,7 +298,6 @@ const sites: DirectorySite[] = [
   },
   {
     id: "homdgcat",
-    index: "12",
     name: "HomoDGCat",
     eyebrow: "原神文本搜索",
     description:
@@ -317,6 +313,34 @@ const sites: DirectorySite[] = [
     ],
   },
 ];
+
+const siteOrder = [
+  "nanoka",
+  "lunaris",
+  "alioth",
+  "paimon",
+  "genius",
+  "meropide",
+  "yatta",
+  "maante",
+  "light-cone",
+  "gachabase",
+  "honey-impact",
+  "homdgcat",
+] as const;
+
+const sites: DirectorySite[] = siteOrder.map((id, position) => {
+  const site = siteCatalog.find((entry) => entry.id === id);
+
+  if (!site) {
+    throw new Error(`Missing directory site: ${id}`);
+  }
+
+  return {
+    ...site,
+    index: String(position + 1).padStart(2, "0"),
+  };
+});
 
 function ArrowIcon() {
   return <span aria-hidden="true">↗</span>;
@@ -515,7 +539,13 @@ export function GachaDirectory() {
                   </div>
 
                   <div
-                    className={`card-actions${site.links.length > 1 ? " card-actions-dual" : ""}`}
+                    className={`card-actions${
+                      site.links.length > 2
+                        ? " card-actions-multi"
+                        : site.links.length > 1
+                          ? " card-actions-dual"
+                          : ""
+                    }`}
                   >
                     {site.links.map((link) => (
                       <a
