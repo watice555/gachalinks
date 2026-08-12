@@ -530,8 +530,7 @@ button {
 .card-actions {
   display: grid;
   gap: 7px;
-  margin-top: auto;
-  padding-top: 13px;
+  margin-top: 14px;
   grid-template-columns: 1fr;
 }
 
@@ -568,12 +567,15 @@ button {
 }
 
 .card-actions-multi a {
-  justify-content: center;
-  padding-inline: 4px;
+  justify-content: space-between;
+  gap: 2px;
+  padding-inline: 7px;
 }
 
 .card-actions-multi a > span:last-child {
-  display: none;
+  display: inline;
+  flex: 0 0 auto;
+  font-size: 11px;
 }
 
 .card-actions a > span:first-child {

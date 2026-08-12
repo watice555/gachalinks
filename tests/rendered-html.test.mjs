@@ -81,7 +81,13 @@ test("exports assets required by GitHub Pages and social previews", async () => 
     "",
   );
 
-  await access(new URL(stylesheetPath, outputRoot));
+  const stylesheet = await readFile(new URL(stylesheetPath, outputRoot), "utf8");
+
+  assert.match(stylesheet, /\.card-actions\{[^}]*margin-top:14px/);
+  assert.doesNotMatch(
+    stylesheet,
+    /\.card-actions-multi a>span:last-child\{display:none/,
+  );
   assert.match(
     html,
     /<meta property="og:image" content="https:\/\/watice555\.github\.io\/gachalinks\/og-v2\.png"/,
