@@ -11,6 +11,7 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /<title>Gacha Links｜抽卡二游资料导航<\/title>/);
   assert.match(html, /二游导航站/);
   assert.match(html, /整理五款游戏的资料站、数据工具与玩家创作工具/);
+  assert.match(html, /为二游玩家整理的实用站点索引/);
   assert.match(html, /game-logos\/genshin\.png/);
   assert.match(html, /game-logos\/star-rail\.png/);
   assert.match(html, /game-logos\/zenless-zone-zero\.png/);
@@ -18,6 +19,7 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /game-logos\/neverness-to-everness\.png/);
   assert.doesNotMatch(html, /SELECTED TOOLS FOR GACHA PLAYERS/);
   assert.doesNotMatch(html, /抽卡二游，|一站抵达。|精选站点<\/dt>/);
+  assert.doesNotMatch(html, /只收录有明确用途|这个站能帮你做什么|不再混为一谈/);
   assert.match(html, /Project Amber/);
   assert.match(html, /Project Yatta/);
   assert.match(html, /https:\/\/gi\.yatta\.moe\/chs/);

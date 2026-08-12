@@ -492,7 +492,7 @@ export function GachaDirectory() {
           </span>
           <span className="brand-name">GACHA LINKS</span>
         </a>
-        <p>非官方导航，站点内容与可用性以目标网站为准。</p>
+        <p>为二游玩家整理的实用站点索引</p>
         <a href="#top">回到顶部 ↑</a>
       </footer>
     </div>
