@@ -29,6 +29,7 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /https:\/\/zzz\.nanoka\.cc\//);
   assert.match(html, /https:\/\/ww\.nanoka\.cc\//);
   assert.match(html, /https:\/\/nte\.nanoka\.cc\//);
+  assert.match(html, /card-actions card-actions-multi/);
   assert.match(html, /抽卡统计来自用户主动提交/);
   assert.match(html, /https:\/\/light\.shenmedouyou\.top\//);
   assert.match(html, /https:\/\/alioth\.wiki\//);
