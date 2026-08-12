@@ -36,6 +36,10 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /https:\/\/gachabase\.net\//);
   assert.match(html, /https:\/\/gensh\.honeyhunterworld\.com\//);
   assert.match(html, /https:\/\/homodgcat\.wiki\/CHS/);
+  assert.match(html, /https:\/\/watice555\.github\.io\/nte-notes\//);
+  assert.match(html, /<h3>异环手账<\/h3>/);
+  assert.match(html, /周期事项/);
+  assert.match(html, /术语词典/);
   assert.match(html, /文本搜索/);
   assert.match(html, /测试内容实装前可能变化/);
   assert.match(html, /高难关卡/);
@@ -57,6 +61,7 @@ test("exports the complete navigation directory", async () => {
     "Gachabase",
     "Honey Impact",
     "HomoDGCat",
+    "异环手账",
   ];
   const positions = expectedSiteOrder.map((name) => html.indexOf(`<h3>${name}</h3>`));
 

@@ -22,6 +22,8 @@ const informationTypes = [
   "养成规划",
   "互动地图",
   "任务成就",
+  "周期事项",
+  "术语词典",
   "文本搜索",
   "创作工具",
   "版本数据",
@@ -312,6 +314,22 @@ const siteCatalog: DirectorySiteEntry[] = [
       },
     ],
   },
+  {
+    id: "nte-notes",
+    name: "异环手账",
+    eyebrow: "异环轻量资料站",
+    description:
+      "整理异环的日常、周常与双周常等周期事项，以及国服卡池、好感度、名词解释、中英对照和外部链接，支持站内搜索。",
+    accent: "#9de3c4",
+    games: ["异环"],
+    tags: ["卡池信息", "养成规划", "周期事项", "术语词典"],
+    links: [
+      {
+        label: "访问站点",
+        url: "https://watice555.github.io/nte-notes/",
+      },
+    ],
+  },
 ];
 
 const siteOrder = [
@@ -327,6 +345,7 @@ const siteOrder = [
   "gachabase",
   "honey-impact",
   "homdgcat",
+  "nte-notes",
 ] as const;
 
 const sites: DirectorySite[] = siteOrder.map((id, position) => {
