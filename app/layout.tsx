@@ -24,25 +24,25 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Gacha Links｜抽卡二游资料导航",
-    description: "数据库、抽卡统计、高难数据与创作工具，一站抵达。",
+    description: "五款游戏的资料站、数据工具与玩家创作工具导航。",
     type: "website",
     locale: "zh_CN",
     siteName: "Gacha Links",
     url: siteUrl,
     images: [
       {
-        url: new URL("og.png", siteUrl).toString(),
+        url: new URL("og-v2.png", siteUrl).toString(),
         width: 1744,
         height: 909,
-        alt: "Gacha Links：抽卡二游，一站抵达。",
+        alt: "Gacha Links 二游导航站",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Gacha Links｜抽卡二游资料导航",
-    description: "数据库、抽卡统计、高难数据与创作工具，一站抵达。",
-    images: [new URL("og.png", siteUrl).toString()],
+    description: "五款游戏的资料站、数据工具与玩家创作工具导航。",
+    images: [new URL("og-v2.png", siteUrl).toString()],
   },
 };
 

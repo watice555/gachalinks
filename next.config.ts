@@ -10,6 +10,9 @@ const assetPrefix = isProjectPage ? `/${repositoryName}` : undefined;
 const nextConfig: NextConfig = {
   output: "export",
   assetPrefix,
+  env: {
+    NEXT_PUBLIC_ASSET_PREFIX: assetPrefix ?? "",
+  },
   trailingSlash: true,
   images: {
     unoptimized: true,

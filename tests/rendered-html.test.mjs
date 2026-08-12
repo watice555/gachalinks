@@ -9,9 +9,15 @@ test("exports the complete navigation directory", async () => {
 
   assert.match(html, /<html lang="zh-CN">/);
   assert.match(html, /<title>Gacha Links｜抽卡二游资料导航<\/title>/);
-  assert.match(html, /抽卡二游，/);
-  assert.match(html, /一站抵达。/);
-  assert.match(html, /精选站点<\/dt><dd>08<\/dd>/);
+  assert.match(html, /二游导航站/);
+  assert.match(html, /整理五款游戏的资料站、数据工具与玩家创作工具/);
+  assert.match(html, /game-logos\/genshin\.png/);
+  assert.match(html, /game-logos\/star-rail\.png/);
+  assert.match(html, /game-logos\/zenless-zone-zero\.png/);
+  assert.match(html, /game-logos\/wuthering-waves\.png/);
+  assert.match(html, /game-logos\/neverness-to-everness\.png/);
+  assert.doesNotMatch(html, /SELECTED TOOLS FOR GACHA PLAYERS/);
+  assert.doesNotMatch(html, /抽卡二游，|一站抵达。|精选站点<\/dt>/);
   assert.match(html, /Project Amber/);
   assert.match(html, /Project Yatta/);
   assert.match(html, /https:\/\/gi\.yatta\.moe\/chs/);
@@ -27,12 +33,12 @@ test("exports the complete navigation directory", async () => {
 test("exports assets required by GitHub Pages and social previews", async () => {
   await Promise.all([
     access(new URL(".nojekyll", outputRoot)),
-    access(new URL("og.png", outputRoot)),
+    access(new URL("og-v2.png", outputRoot)),
   ]);
 
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
   assert.match(
     html,
-    /<meta property="og:image" content="https:\/\/watice555\.github\.io\/gachalinks\/og\.png"/,
+    /<meta property="og:image" content="https:\/\/watice555\.github\.io\/gachalinks\/og-v2\.png"/,
   );
 });

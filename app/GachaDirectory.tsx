@@ -2,8 +2,6 @@
 
 import { useMemo, useState } from "react";
 
-const games = ["全部游戏", "原神", "星铁", "绝区零", "鸣潮", "异环"] as const;
-
 const informationTypes = [
   "全部类型",
   "综合资料库",
@@ -29,11 +27,35 @@ const informationTypes = [
   "版本对比",
 ] as const;
 
-type Game = Exclude<(typeof games)[number], "全部游戏">;
+type Game = "原神" | "星铁" | "绝区零" | "鸣潮" | "异环";
 type InformationType = Exclude<
   (typeof informationTypes)[number],
   "全部类型"
 >;
+
+const featuredGames: Array<{
+  name: Game;
+  logo: string;
+  logoClass?: string;
+}> = [
+  { name: "原神", logo: "/game-logos/genshin.png" },
+  { name: "星铁", logo: "/game-logos/star-rail.png", logoClass: "logo-wide" },
+  {
+    name: "绝区零",
+    logo: "/game-logos/zenless-zone-zero.png",
+    logoClass: "logo-wide",
+  },
+  {
+    name: "鸣潮",
+    logo: "/game-logos/wuthering-waves.png",
+    logoClass: "logo-wide",
+  },
+  {
+    name: "异环",
+    logo: "/game-logos/neverness-to-everness.png",
+    logoClass: "logo-wide",
+  },
+];
 
 type SiteLink = {
   label: string;
@@ -227,9 +249,8 @@ function ArrowIcon() {
 }
 
 export function GachaDirectory() {
-  const [activeGame, setActiveGame] = useState<(typeof games)[number]>(
-    "全部游戏",
-  );
+  const assetPrefix = process.env.NEXT_PUBLIC_ASSET_PREFIX ?? "";
+  const [activeGame, setActiveGame] = useState<Game | "全部游戏">("全部游戏");
   const [activeType, setActiveType] = useState<
     (typeof informationTypes)[number]
   >("全部类型");
@@ -281,63 +302,52 @@ export function GachaDirectory() {
         </a>
         <nav className="topnav" aria-label="页面导航">
           <a href="#directory">站点目录</a>
-          <a href="#about">关于本站</a>
         </nav>
       </header>
 
       <main id="top">
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow">SELECTED TOOLS FOR GACHA PLAYERS</p>
-            <h1 id="hero-title">
-              抽卡二游，
-              <span>一站抵达。</span>
-            </h1>
-            <p className="hero-intro">
-              从角色数据库、抽卡统计，到高难关卡与通关成绩。
-              <br />
-              精选真正有用的玩家工具，少一点搜索，多一点游戏。
-            </p>
-            <a className="hero-action" href="#directory">
-              浏览站点
-              <span aria-hidden="true">↓</span>
-            </a>
+        <section className="intro-panel" aria-labelledby="intro-title">
+          <div className="intro-copy">
+            <h1 id="intro-title">二游导航站</h1>
+            <p>整理五款游戏的资料站、数据工具与玩家创作工具。</p>
           </div>
 
-          <div className="hero-orbit" aria-hidden="true">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="orbit orbit-three" />
-            <div className="orbit-core">GL</div>
-            <span className="satellite satellite-one">01</span>
-            <span className="satellite satellite-two">05</span>
-            <span className="satellite satellite-three">08</span>
+          <div className="game-logo-filter" aria-label="按游戏筛选站点">
+            <button
+              className="all-games-button"
+              type="button"
+              aria-pressed={activeGame === "全部游戏"}
+              onClick={() => setActiveGame("全部游戏")}
+            >
+              全部
+            </button>
+            {featuredGames.map((game) => (
+              <button
+                className="game-logo-button"
+                type="button"
+                key={game.name}
+                aria-pressed={activeGame === game.name}
+                aria-label={`筛选${game.name}站点`}
+                onClick={() => setActiveGame(game.name)}
+              >
+                {/* Native images keep the small logo strip independent of image loaders. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className={game.logoClass}
+                  src={`${assetPrefix}${game.logo}`}
+                  alt=""
+                />
+                <span>{game.name}</span>
+              </button>
+            ))}
           </div>
-
-          <dl className="hero-stats">
-            <div>
-              <dt>精选站点</dt>
-              <dd>08</dd>
-            </div>
-            <div>
-              <dt>覆盖游戏</dt>
-              <dd>05</dd>
-            </div>
-            <div>
-              <dt>信息标签</dt>
-              <dd>{String(informationTypes.length - 1).padStart(2, "0")}</dd>
-            </div>
-          </dl>
         </section>
 
         <section className="directory-section" id="directory">
           <div className="section-heading">
-            <div>
-              <p className="section-kicker">DIRECTORY / 目录</p>
-              <h2>找到你需要的站点</h2>
-            </div>
+            <h2>站点目录</h2>
             <p className="section-count" aria-live="polite">
-              <strong>{String(filteredSites.length).padStart(2, "0")}</strong>
+              <strong>{filteredSites.length}</strong>
               <span>个结果</span>
             </p>
           </div>
@@ -354,23 +364,6 @@ export function GachaDirectory() {
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="试试「抽卡」「高难」或站点名称"
                 />
-              </div>
-            </div>
-
-            <div className="filter-row">
-              <p>游戏</p>
-              <div className="filter-options">
-                {games.map((game) => (
-                  <button
-                    className="filter-chip"
-                    type="button"
-                    key={game}
-                    aria-pressed={activeGame === game}
-                    onClick={() => setActiveGame(game)}
-                  >
-                    {game}
-                  </button>
-                ))}
               </div>
             </div>
 
@@ -407,7 +400,7 @@ export function GachaDirectory() {
                   </strong>
                 </>
               ) : (
-                "全部精选站点"
+                "全部站点"
               )}
             </p>
             {hasFilters && (
@@ -490,20 +483,6 @@ export function GachaDirectory() {
           )}
         </section>
 
-        <section className="about-section" id="about">
-          <div>
-            <p className="section-kicker">ABOUT / 关于</p>
-            <h2>只收录有明确用途的站点。</h2>
-          </div>
-          <div className="about-copy">
-            <p>
-              Gacha Links 关注的是“这个站能帮你做什么”。每个站点同时按支持游戏和信息类型标注，让数据库、高难关卡数据与玩家通关成绩不再混为一谈。
-            </p>
-            <p>
-              本站为非官方导航，不隶属于所列游戏、开发商或第三方站点。站点内容和可用性可能变化，请以目标网站实际页面为准。
-            </p>
-          </div>
-        </section>
       </main>
 
       <footer>
@@ -513,7 +492,7 @@ export function GachaDirectory() {
           </span>
           <span className="brand-name">GACHA LINKS</span>
         </a>
-        <p>为二游玩家整理的实用资料索引</p>
+        <p>非官方导航，站点内容与可用性以目标网站为准。</p>
         <a href="#top">回到顶部 ↑</a>
       </footer>
     </div>
