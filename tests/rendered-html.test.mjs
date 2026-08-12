@@ -26,6 +26,12 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /https:\/\/sr\.yatta\.moe\/cn/);
   assert.match(html, /抽卡统计来自用户主动提交/);
   assert.match(html, /https:\/\/light\.shenmedouyou\.top\//);
+  assert.match(html, /https:\/\/alioth\.wiki\//);
+  assert.match(html, /https:\/\/gachabase\.net\//);
+  assert.match(html, /https:\/\/gensh\.honeyhunterworld\.com\//);
+  assert.match(html, /https:\/\/homodgcat\.wiki\/CHS/);
+  assert.match(html, /文本搜索/);
+  assert.match(html, /可切换正式服与测试服分支/);
   assert.match(html, /高难关卡/);
   assert.match(html, /高难成绩/);
   assert.doesNotMatch(html, /Meta统计/);
@@ -39,6 +45,17 @@ test("exports assets required by GitHub Pages and social previews", async () => 
   ]);
 
   const html = await readFile(new URL("index.html", outputRoot), "utf8");
+  const stylesheetHref = html.match(
+    /<link rel="stylesheet" href="([^"]+)"/,
+  )?.[1];
+
+  assert.ok(stylesheetHref, "exported HTML should reference a stylesheet");
+  const stylesheetPath = stylesheetHref.replace(
+    /^\/(?:gachalinks\/)?/,
+    "",
+  );
+
+  await access(new URL(stylesheetPath, outputRoot));
   assert.match(
     html,
     /<meta property="og:image" content="https:\/\/watice555\.github\.io\/gachalinks\/og-v2\.png"/,
