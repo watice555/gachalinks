@@ -31,10 +31,11 @@ test("exports the complete navigation directory", async () => {
   assert.match(html, /https:\/\/gensh\.honeyhunterworld\.com\//);
   assert.match(html, /https:\/\/homodgcat\.wiki\/CHS/);
   assert.match(html, /文本搜索/);
-  assert.match(html, /可切换正式服与测试服分支/);
+  assert.match(html, /测试内容实装前可能变化/);
   assert.match(html, /高难关卡/);
   assert.match(html, /高难成绩/);
   assert.doesNotMatch(html, /Meta统计/);
+  assert.doesNotMatch(html, /site-monogram|site-note|数据说明/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/);
 });
 

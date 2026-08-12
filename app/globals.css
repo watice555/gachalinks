@@ -411,7 +411,7 @@ button {
 .site-grid {
   display: grid;
   gap: 12px;
-  align-items: start;
+  align-items: stretch;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -419,8 +419,9 @@ button {
   --site-accent: var(--primary);
   position: relative;
   display: flex;
+  height: 326px;
   min-width: 0;
-  padding: 22px;
+  padding: 18px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
@@ -459,34 +460,16 @@ button {
 
 .card-index {
   position: absolute;
-  top: 19px;
-  right: 20px;
+  top: 16px;
+  right: 17px;
   color: rgba(209, 216, 248, 0.24);
   font-family: var(--font-mono);
   font-size: 10px;
 }
 
 .card-heading {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   min-width: 0;
   padding-right: 34px;
-}
-
-.site-monogram {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--site-accent), transparent 38%);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--site-accent), transparent 91%);
-  color: var(--site-accent);
-  font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 700;
 }
 
 .card-heading p {
@@ -501,7 +484,7 @@ button {
 .card-heading h3 {
   margin: 0;
   overflow-wrap: anywhere;
-  font-size: clamp(18px, 1.7vw, 23px);
+  font-size: clamp(18px, 1.6vw, 22px);
   font-weight: 670;
   letter-spacing: -0.035em;
   line-height: 1.15;
@@ -511,7 +494,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-top: 15px;
+  margin-top: 11px;
 }
 
 .game-tags span {
@@ -524,41 +507,21 @@ button {
 }
 
 .site-description {
-  margin: 15px 0 0;
-  color: #d6d9e8;
-  font-size: 12px;
-  line-height: 1.72;
-}
-
-.site-note {
   margin: 12px 0 0;
-  padding: 9px 11px;
-  border-left: 2px solid var(--site-accent);
-  background: color-mix(in srgb, var(--site-accent), transparent 94%);
-  color: var(--muted-strong);
-  font-size: 10px;
-  line-height: 1.62;
-}
-
-.site-note span {
-  display: block;
-  margin-bottom: 2px;
-  color: var(--site-accent);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  color: #d6d9e8;
+  font-size: 11px;
+  line-height: 1.65;
 }
 
 .info-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin: 15px 0 0;
+  gap: 4px;
+  margin: 12px 0 0;
 }
 
 .info-tags span {
-  padding: 4px 7px;
+  padding: 3px 6px;
   border: 1px solid var(--line);
   color: var(--muted);
   font-size: 9px;
@@ -567,7 +530,8 @@ button {
 .card-actions {
   display: grid;
   gap: 7px;
-  margin-top: 17px;
+  margin-top: auto;
+  padding-top: 13px;
   grid-template-columns: 1fr;
 }
 
@@ -580,7 +544,7 @@ button {
   align-items: center;
   justify-content: space-between;
   min-width: 0;
-  min-height: 42px;
+  min-height: 38px;
   padding: 0 12px;
   border: 1px solid var(--line-strong);
   color: var(--foreground);
@@ -790,16 +754,13 @@ footer > a:last-child {
   }
 
   .site-card {
-    padding: 19px;
+    height: 342px;
+    padding: 17px;
   }
 
   .card-index {
     top: 18px;
     right: 18px;
-  }
-
-  .card-actions-dual {
-    grid-template-columns: 1fr;
   }
 
   footer {
