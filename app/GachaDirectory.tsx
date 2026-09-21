@@ -82,6 +82,17 @@ type DirectorySiteEntry = Omit<DirectorySite, "index">;
 
 const siteCatalog: DirectorySiteEntry[] = [
   {
+    id: "mhydps",
+    name: "GenshinDPS",
+    eyebrow: "原神DPS数据库",
+    description:
+      "收录原神队伍 DPS 与幽境危战成绩，可按角色、配置成本和记录规则筛选，查看队伍配置与对应视频，参考配队和实战打法。",
+    accent: "#efad75",
+    games: ["原神"],
+    tags: ["高难成绩", "高难攻略"],
+    links: [{ label: "访问站点", url: "https://www.mhydps.cn/" }],
+  },
+  {
     id: "nanoka",
     name: "nanoka.cc",
     eyebrow: "跨游戏资料库",
@@ -346,6 +357,7 @@ const siteOrder = [
   "honey-impact",
   "homdgcat",
   "nte-notes",
+  "mhydps",
 ] as const;
 
 const sites: DirectorySite[] = siteOrder.map((id, position) => {
